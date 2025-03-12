@@ -6,7 +6,7 @@
 /*   By: adegl-in <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:05:03 by adegl-in          #+#    #+#             */
-/*   Updated: 2025/03/11 14:43:57 by adegl-in         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:24:11 by adegl-in         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,27 @@ void send_bit(pid_t server_pid, char character)
             kill(server_pid, SIGUSR2);
         else
             kill(server_pid, SIGUSR1);
-        usleep(100);
+		usleep(100);
 		i--;
     }
 }
+	
+int main(int argc, char **argv)
+{
+    int i = 0;
 
-void ack_handler(int sig) {
-    (void)sig;
-}
-
-int main(int argc, char **argv) {
-    if (argc != 3) {
-        ft_printf("Usage: %s <server_pid> <message>\n", argv[0]);
-        return 1;
-    }
-
-    pid_t server_pid = atoi(argv[1]);
-    struct sigaction sa;
-    
-    sa.sa_handler = ack_handler;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = 0;
-    sigaction(SIGUSR1, &sa, NULL);
-
-    for (int i = 0; argv[2][i] != '\0'; i++) {
+    if (argc != 3)
+        return (1);
+    pid_t server_pid = ft_atoi(argv[1]);
+    if (server_pid <= 0)
+        return (0);
+    if (kill(server_pid, 0) == -1 && errno == ESRCH)
+        return (0);
+    while (argv[2][i] != '\0')
+    {
         send_bit(server_pid, argv[2][i]);
-        pause();  // Wait for acknowledgment
+        i++;
     }
-    send_bit(server_pid, '\n');  // Send newline to indicate end
-
-    return 0;
+    return (0);
 }
+
