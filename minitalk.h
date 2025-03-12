@@ -6,14 +6,15 @@
 /*   By: adegl-in <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:05:34 by adegl-in          #+#    #+#             */
-/*   Updated: 2025/03/12 18:21:07 by adegl-in         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:37:18 by adegl-in         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// default source was inserted so that the function usleep could've been used properly
+// default source was inserted so that the function usleep could've been used
+// properly
 // usleep is not a function that exists in the newer versions of glibc
 // xopen source is used to not print unwanted errors made by the compiler
-#ifndef MINTALK_H
+#ifndef MINITALK_H
 # define MINITALK_H
 
 # define _DEFAULT_SOURCE
