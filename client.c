@@ -6,7 +6,7 @@
 /*   By: adegl-in <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:05:03 by adegl-in          #+#    #+#             */
-/*   Updated: 2025/03/12 18:36:33 by adegl-in         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:51:34 by adegl-in         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv)
 	pid_t	server_pid;
 
 	i = 0;
-	server_pid = NULL;
 	if (argc != 3)
 		return (1);
 	server_pid = ft_atoi(argv[1]);
@@ -50,5 +49,6 @@ int	main(int argc, char **argv)
 		send_bit(server_pid, argv[2][i]);
 		i++;
 	}
+	send_bit(server_pid, '\0');
 	return (0);
 }

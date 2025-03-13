@@ -6,7 +6,7 @@
 /*   By: adegl-in <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:04:42 by adegl-in          #+#    #+#             */
-/*   Updated: 2025/03/12 18:41:00 by adegl-in         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:18:30 by adegl-in         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	signal_handler(int sig, siginfo_t *info, void *context)
 	bit_index++;
 	if (bit_index == 8)
 	{
-		write(1, &character, 1);
+		ft_printf("%c", character);
+		if (character == '\0')
+			ft_printf("\n");
 		bit_index = 0;
 		character = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: adegl-in <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:05:03 by adegl-in          #+#    #+#             */
-/*   Updated: 2025/03/12 18:33:05 by adegl-in         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:23:30 by adegl-in         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 		return (1);
 	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
-		return (ft_printf("nice try bastardo\n"), 0);
+		return (0);
 	if (kill(server_pid, 0) == -1 && errno == ESRCH)
 		return (0);
 	sa.sa_handler = ack_handler;
@@ -60,5 +60,6 @@ int	main(int argc, char **argv)
 		send_bit(server_pid, argv[2][i]);
 		i++;
 	}
+	send_bit(server_pid, '\0');
 	return (0);
 }
